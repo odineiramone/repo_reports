@@ -13,9 +13,16 @@ defmodule CodeStoragePlatformTests.UtilsTest do
   end
 
   describe "get_repo_and_user/1" do
-    test "retorna mapa %{repository: <repo>, user: <owner>}" do
+    test "retorna tupla {:ok, %{repository: <repo>, user: <owner>}}" do
       assert CodeStoragePlatform.Utils.get_repo_and_user("owner/repo") ==
                {:ok, %{repository: "repo", user: "owner"}}
+    end
+  end
+
+  describe "get_repo_issues/1" do
+    test "retorna tupla {:ok, %{issues: <issues_list>}}" do
+      assert CodeStoragePlatform.Utils.get_repo_issues("odineiramone/wheres_my_weekend") ==
+               {:ok, %{issues: []}}
     end
   end
 end
