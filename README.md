@@ -23,10 +23,6 @@ Em ambos os casos o relatório é enviado via webhook em formato JSON ao final d
 }
 ```
 
-## Limitações
-
-O serviço busca até 100 entradas de issues e pessoas contribuidoras para o repositório solicitado. Para limitações de uso da API do GitHub, gentileza visitar [a página de limites da API do serviço](https://docs.github.com/en/rest/overview/rate-limits-for-the-rest-api?apiVersion=2022-11-28).
-
 ## Instalação
 
 - Instale as depencencias com `mix deps.get`.
@@ -35,3 +31,20 @@ O serviço busca até 100 entradas de issues e pessoas contribuidoras para o rep
   - Você pode utilizar esse serviço adicionar um token para acesso ao GitHub à variável de ambiente ``. Contudo os [limites de uso sem autenticação](https://docs.github.com/en/rest/overview/rate-limits-for-the-rest-api?apiVersion=2022-11-28#primary-rate-limit-for-unauthenticated-users) são bem baixos comparados ao [uso com token de autenticação](https://docs.github.com/en/rest/overview/rate-limits-for-the-rest-api?apiVersion=2022-11-28#primary-rate-limit-for-authenticated-users). Pessoalmente eu recomendo que você crie um token de autenticação no GitHub caso queira se alongar nos testes
 
 - Rode o comando `source .env` para usar as variáveis de ambiente na sessão atual do terminal.
+
+## Limitações
+
+O serviço busca até 100 entradas de issues e pessoas contribuidoras para o repositório solicitado. Para limitações de uso da API do GitHub, gentileza visitar [a página de limites da API do serviço](https://docs.github.com/en/rest/overview/rate-limits-for-the-rest-api?apiVersion=2022-11-28).
+
+## Desenvolvimento
+
+### Débito técnicos
+
+- Documentação de módulos.
+- [Credo](https://github.com/rrrene/credo) para análise sintática.
+
+### Roadmap
+
+- Iterar sobre todas páginas de issues e contributors de cada repositório para fornecer um relatório completo do momento da consulta.
+- Transformar o serviço em um serviço web.
+- Enviar o relatório via webhook de forma assíncrona.
