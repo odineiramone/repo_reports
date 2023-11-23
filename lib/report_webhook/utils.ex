@@ -2,12 +2,15 @@ defmodule ReportWebhook.Utils do
   alias ReportWebhook.Client
 
   def post_report(%{report: report}) do
-    with {:ok, encoded_report} <- Jason.encode(report),
-         %{status_code: 200, body: body} <- Client.post(encoded_report) do
-      {:ok, Jason.decode!(body)}
+    with {:ok, %{body: body}} <- Client.post(report) do
+      {:ok, body}
     else
-      {:ok, result} ->
-        {:error, result}
+      {_, %{body: body}} -> {:error, body}
+    end
+
+    case Client.post(report) do
+      {:ok, %{body: body}} -> {:ok, body}
+      {_, %{body: body}} -> {:error, body}
     end
   end
 

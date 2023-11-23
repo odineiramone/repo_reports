@@ -29,10 +29,11 @@ defmodule CodeStoragePlatformMox.ClientMock do
   def get!("https://api.github.com/repos/owner/repo_not_found"), do: %{status_code: 404}
 
   def post(_url, _report, _headers) do
-    %{
-      status_code: 200,
-      body: get_fixture("webhook.json")
-    }
+    {:ok,
+     %{
+       status_code: 200,
+       body: get_fixture("webhook.json")
+     }}
   end
 
   defp get_fixture(file_path) do

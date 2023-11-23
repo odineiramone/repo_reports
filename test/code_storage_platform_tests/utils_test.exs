@@ -8,7 +8,7 @@ defmodule CodeStoragePlatformTests.UtilsTest do
 
     test "retorna {:error, <parametro>} caso o repositório remoto exista" do
       assert CodeStoragePlatform.Utils.repo_exists?("owner/repo_not_found") ==
-               {:error, "owner/repo_not_found"}
+               {:error, "O repositório owner/repo_not_found não existe."}
     end
   end
 

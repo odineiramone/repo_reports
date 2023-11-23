@@ -7,7 +7,7 @@ defmodule CodeStoragePlatform.Utils do
       {:ok, repo_path}
     else
       :error ->
-        {:error, repo_path}
+        {:error, "O repositório " <> repo_path <> " não existe."}
     end
   end
 
