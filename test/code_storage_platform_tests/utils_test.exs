@@ -21,8 +21,15 @@ defmodule CodeStoragePlatformTests.UtilsTest do
 
   describe "get_repo_issues/1" do
     test "retorna tupla {:ok, %{issues: <issues_list>}}" do
-      assert CodeStoragePlatform.Utils.get_repo_issues("odineiramone/wheres_my_weekend") ==
-               {:ok, %{issues: []}}
+      assert CodeStoragePlatform.Utils.get_repo_issues("owner/repo") ==
+               {:ok, [["Issue Title", "user", ["label1", "label2", "label3"]]]}
+    end
+  end
+
+  describe "get_repo_contributors/1" do
+    test "retorna tupla {:ok, %{issues: <issues_list>}}" do
+      assert CodeStoragePlatform.Utils.get_repo_contributors("owner/repo") ==
+               {:ok, [["John Doe", "login", 1]]}
     end
   end
 end

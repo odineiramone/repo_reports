@@ -24,3 +24,7 @@ repo_reports-*.tar
 
 # Temporary files, for example, from tests.
 /tmp/
+
+# ignore .env file but don't the .env.<anything> file
+/.env
+!/.env.

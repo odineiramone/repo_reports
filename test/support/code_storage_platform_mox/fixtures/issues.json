@@ -1,0 +1,19 @@
+[
+   {
+      "title":"Issue Title",
+      "user":{
+         "login":"user"
+      },
+      "labels":[
+         {
+            "name":"label1"
+         },
+         {
+            "name":"label2"
+         },
+         {
+            "name":"label3"
+         }
+      ]
+   }
+]

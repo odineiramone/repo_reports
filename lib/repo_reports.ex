@@ -1,21 +1,23 @@
 defmodule RepoReports do
   alias Validators.FormatValidator
-  alias CodeStoragePlatform.Utils
+  alias CodeStoragePlatform.Utils, as: CodePlatformUtils
+  alias ReportWebhook.Utils, as: ReportWebhookUtils
 
-  def get_report(repo_path) when is_binary(repo_path) do
+  def generate_report(repo_path) when is_binary(repo_path) do
     with {:ok, _} <- FormatValidator.validate(repo_path),
-         {:ok, _} <- Utils.repo_exists?(repo_path),
-         {:ok, repo_and_user_info} <- Utils.get_repo_and_user(repo_path),
-         issues_reports_list <- Utils.get_repo_issues(repo_path),
-         contributors_reports_list <- Utils.get_repo_contributors(repo_path) do
+         {:ok, _} <- CodePlatformUtils.repo_exists?(repo_path),
+         {:ok, repo_and_user_info} <- CodePlatformUtils.get_repo_and_user(repo_path),
+         {:ok, issues_reports_list} <- CodePlatformUtils.get_repo_issues(repo_path),
+         {:ok, contributors_reports_list} <- CodePlatformUtils.get_repo_contributors(repo_path) do
       %{
-        user: repo_and_user_info.user,
-        repository: repo_and_user_info.repository,
-        issues: issues_reports_list,
-        contributors: contributors_reports_list
+        repo_and_user_info: repo_and_user_info,
+        issues_reports: issues_reports_list,
+        contributors_reports: contributors_reports_list
       }
+      |> Presenters.ReportPresenter.present()
+      |> ReportWebhookUtils.post_report()
     end
   end
 
-  def get_report(_), do: {:error, "o caminho para o repositório precisa ser uma string"}
+  def generate_report(_), do: {:error, "o caminho para o repositório precisa ser uma string"}
 end
