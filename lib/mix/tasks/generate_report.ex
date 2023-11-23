@@ -7,7 +7,7 @@ defmodule Mix.Tasks.GenerateReport do
     Mix.Task.run("app.start")
 
     Logger.info("Iniciando...")
-    Enum.join(args, " ") |> RepoReports.generate_report() |> IO.inspect()
+    Enum.join(args, " ") |> RepoReports.generate_report()
     Logger.info("Tarefa finalizada.")
   end
 end

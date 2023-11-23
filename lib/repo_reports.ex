@@ -22,8 +22,8 @@ defmodule RepoReports do
              issues_reports_list,
              contributors_reports_list
            ) do
+      Logger.info("Enviando relatório via webhook.")
       ReportWebhookUtils.post_report(report)
-      Logger.info("Relatório enviado via webhook!")
     end
   end
 

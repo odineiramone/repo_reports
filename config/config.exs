@@ -1,6 +1,7 @@
 import Config
 
 config :repo_reports, :github, base_url: "https://api.github.com"
+config :repo_reports, :github, authentication_token: System.get_env("GITHUB_API_TOKEN")
 
 config :repo_reports, :report_webhook, url: System.get_env("REPORTS_WEBHOOK_URL")
 
